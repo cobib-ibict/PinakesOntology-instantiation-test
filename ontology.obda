@@ -1,0 +1,42 @@
+[PrefixDeclaration]
+:		https://cobib-ibict.github.io/ontologies/pinakes#
+xsd:		http://www.w3.org/2001/XMLSchema#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[MappingDeclaration] @COLLECTION[[
+mappingId	MAP_PUBLICACAO_PRINCIPAL
+target		:{identificador} a :PublicacaoSeriada ; :tituloProprio "{marc245a}" ; :frequencia "{marc310a}" ; :designacaoNumerica "{marc362a}" ; :hasISSN :ISSN_{identificador} ; :hasPublicationLanguage :Idioma_{identificador} ; :hasCountryPublication :Pais_{identificador} ; :hasPublicationDate :PublicacaoImprenta_{identificador} ; :hasNote :Nota_{identificador} ; :hasControlledSubject :AssuntoControlado_{identificador} .
+source		SELECT identificador, marc022a, marc041a, marc044a, marc245a, marc264a, marc264b, marc264c, marc310a, marc362a, marc500a, marc650a FROM MARC_XML_TABLE
+
+mappingId	MAP_ISSN
+target		:ISSN_{identificador} a :ISSN ; :descricao "{marc022a}" .
+source		SELECT identificador, marc022a FROM MARC_XML_TABLE WHERE marc022a IS NOT NULL AND marc022a != ''
+
+mappingId	MAP_PUBLICACAO_IMPRENTA
+target		:PublicacaoImprenta_{identificador} a :PublicacaoImprenta ; :dataInicialPI "{marc264c}"^^xsd:gYear ; :hasPlacePublication :Localidade_{identificador} ; :hasPublisher :Editora_{identificador} .
+source		SELECT identificador, marc264a, marc264b, marc264c FROM MARC_XML_TABLE
+
+mappingId	MAP_LOCALIDADE
+target		:Localidade_{identificador} a :Localidade ; :nome "{marc264a}" .
+source		SELECT identificador, marc264a FROM MARC_XML_TABLE WHERE marc264a IS NOT NULL AND marc264a != ''
+
+mappingId	MAP_EDITORA
+target		:Editora_{identificador} a :Editora ; :nome "{marc264b}" .
+source		SELECT identificador, marc264b FROM MARC_XML_TABLE WHERE marc264b IS NOT NULL AND marc264b != ''
+
+mappingId	MAP_IDIOMA
+target		:Idioma_{identificador} a :Idioma ; :sigla "{marc041a}" .
+source		SELECT identificador, marc041a FROM MARC_XML_TABLE WHERE marc041a IS NOT NULL AND marc041a != ''
+
+mappingId	MAP_PAIS
+target		:Pais_{identificador} a :Pais ; :codigoMarc "{marc044a}" .
+source		SELECT identificador, marc044a FROM MARC_XML_TABLE WHERE marc044a IS NOT NULL AND marc044a != ''
+
+mappingId	MAP_NOTA
+target		:Nota_{identificador} a :Nota ; :notasGerais "{marc500a}" .
+source		SELECT identificador, marc500a FROM MARC_XML_TABLE WHERE marc500a IS NOT NULL AND marc500a != ''
+
+mappingId	MAP_ASSUNTO
+target		:AssuntoControlado_{identificador} a :AssuntoControlado ; :assunto "{marc650a}" .
+source		SELECT identificador, marc650a FROM MARC_XML_TABLE WHERE marc650a IS NOT NULL AND marc650a != ''
+]]
