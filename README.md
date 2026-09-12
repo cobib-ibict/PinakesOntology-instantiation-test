@@ -3,7 +3,7 @@
   
 ### 1. ESTRUTURA RECOMENDADA DO REPOSITÓRIO pinakes-obda-test/
 ### ├── docs/
-### │   └── quadro_correspondencia_marc21_pinakes.md
+### │   └── quadro_correspondencia_marc21_pinakes
 ### │├── data/
 ### ││   ├── pinakes_marc.sql (com MARC_XML_TABLE)
 ### ││   └── pinakes_marc.csv
@@ -18,26 +18,8 @@
 
 ---------------------------------------------------------------------------------------------------
   
- ## 2. QUADRO DE CORRESPONDÊNCIA MARC21 X ONTOLOGIA PINAKES
+ ## 2. QUADRO DE CORRESPONDÊNCIA MARC21 X ONTOLOGIA PINAKES (ver https://docs.google.com/spreadsheets/d/108g3mGr87Xc4p03HaC37cS08C9pe97AvHK-mBhkBp4s/edit?usp=sharing)
   
- Campo MARC21 | Descrição do Campo        | Classe na Pinakes     | Propriedade na Pinakes    | Datatype / Observações
- 001          | Identificador do Registro | :PublicacaoSeriada    | rdfs:label / URI          | Identificador primário da tabela
- 005          | Data/Hora de Controle     | :PublicacaoSeriada    | :dataAtualizacao          | xsd:dateTimeStamp (requer conversão do formato YYYYMMDDHHMMSS.F)
- 022$a        | Código ISSN               | :ISSN                 | :descricao                | xsd:string (tratamento para nulos/vazios)
- 041$a        | Idioma da Publicação      | :Idioma               | :sigla                    | xsd:string
- 044$a        | Código do País (MARC)     | :Pais                 | :codigoMarc               | xsd:string
- 245$a        | Título Principal          | :PublicacaoSeriada    | :tituloProprio            | xsd:string
- 264$a        | Local de Publicação       | :Localidade           | :nome                     | Entidade desmembrada da imprenta
- 264$b        | Nome da Editora           | :Editora              | :nome                     | Entidade desmembrada da imprenta
- 264$c        | Data de Publicação        | :PublicacaoImprenta   | :dataInicialPI            | xsd:gYear (ano de publicação em 4 dígitos)
- 310$a        | Frequência/Periodicidade  | :PublicacaoSeriada    | :frequencia               | xsd:string
- 362$a        | Designação Numérica/Data  | :PublicacaoSeriada    | :designacaoNumerica       | xsd:string
- 500$a        | Notas Gerais              | :Nota                 | :notasGerais              | xsd:string
- 650$a        | Assunto Controlado        | :AssuntoControlado    | :assunto                  | Campo multivalorado (requer atenção a duplicatas)
-
- Observações Técnicas de Mapeamento:
- - Desmembramento do Campo 264: O campo 264 reúne informações heterogêneas de imprenta. A estratégia adotada desmembra o campo em três instâncias conectadas: :Localidade via :hasPlacePublication, :Editora via :hasPublisher e a data em :PublicacaoImprenta via :dataInicialPI.
- - Tratamento de Subcampos do Campo 044: O código MARC em 044$a e o código ISO em 044$c devem ser mapeados para a classe :Pais, diferenciando-os pelas propriedades :codigoMarc e :codigoIso.
 
   ---------------------------------------------------------------------------------------------------
  ## 3. ESPECIFICAÇÃO DO MAPEAMENTO OBDA (ver ontology.obda)
