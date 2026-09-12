@@ -4,19 +4,19 @@
 ## 1. ESTRUTURA RECOMENDADA DO REPOSITÓRIO
   
  pinakes-obda-test/
- ###├── docs/
- ###│   └── quadro_correspondencia_marc21_pinakes.md
- ###│├── data/
- ###││   ├── pinakes_marc.sql (com MARC_XML_TABLE)
- ###││   └── pinakes_marc.csv
- ###│├── ontology/
- ###││   ├── ontology.rdf
- ###││   ├── ontology.obda
- ###││   └── ontology.properties
- ###│├── queries/
- ###││   ├── consulta_validacao_periodicos.sparql
- ###││   └── consulta_checagem_issn.sparql
- ###│└── README.md
+## ├── docs/
+## │   └── quadro_correspondencia_marc21_pinakes.md
+## │├── data/
+## ││   ├── pinakes_marc.sql (com MARC_XML_TABLE)
+## ││   └── pinakes_marc.csv
+## │├── ontology/
+## ││   ├── ontology.rdf
+## ││   ├── ontology.obda
+## ││   └── ontology.properties
+## │├── queries/
+## ││   ├── consulta_validacao_periodicos.sparql
+## ││   └── consulta_checagem_issn.sparql
+## │└── README.md
 
 ---------------------------------------------------------------------------------------------------
   
